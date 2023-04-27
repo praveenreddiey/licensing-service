@@ -1,0 +1,18 @@
+steps to dockerize a spring boot application
+-----------------------------------------------------------
+1)docker file need to b created at the root folder
+
+FROM openjdk:18(jdk version you are using)
+VOLUME /tmp
+EXPOSE 8080(the port you are using)
+ARG JAR_FILE=target/licensing-service-0.0.1-SNAPSHOT.jar(the jar of your application)
+ADD ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+
+2) build a docker image
+
+docker build -t licensing-service(application name):licensingService(tag of the image) .(. it is mandatory)
+
+3) run the container
+
+docker run -p 8080:8080 licensing-service:licensingService .
